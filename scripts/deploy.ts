@@ -78,12 +78,16 @@ const TokenFactory_Contract_Deployment = async (chainId: any) => {
 
 const Staking_Conract_Deployment = async (chainId: any, signer: any) => {
     try {
-        const Staking_Contract = await ethers.deployContract("StakingContract", [signer])
+        console.log(">>>> Deploying contract ")
+        const options = { gasLimit: 8000000 };
+        const Staking_Contract = await ethers.deployContract("StakingContract", [signer], options)
+        await Staking_Contract.waitForDeployment()
         const deploymentsOutput = {
             StakingContract: await Staking_Contract.getAddress()
         }
         await Save_Deployment_History(chainId, deploymentsOutput)
         console.log("StakingContract deployed to address:", await Staking_Contract.getAddress());
+        console.log(">>>> tx =>", Staking_Contract)
     } catch (err) {
         console.error(err)
     } finally {

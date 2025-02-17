@@ -102,6 +102,9 @@ contract StakingContract {
     function getStakingTokenStartTime(address sender ) public view returns (uint256[] memory) {
         return stakingTokenStartTime[sender];
     }
+    function getStakingTokenLockTime(address sender ) public view returns (uint256[] memory) {
+        return stakingTokenLockTime[sender];
+    }
 
     function getAddress(
         bytes memory bytecode,

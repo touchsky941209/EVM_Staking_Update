@@ -280,7 +280,9 @@ describe("wallet_locking_system", function () {
             const tokenList = await StakingContract.connect(user1).getStakingTokenList(user1.address)
             const startTimeList = await StakingContract.connect(user1).getStakingTokenStartTime(user1.address)
             const amountList = await StakingContract.connect(user1).getStakingTokenAmount(user1.address)
+            const lockTimeList = await StakingContract.connect(user1).getStakingTokenLockTime(user1.address)
             console.log("Token list =>", tokenList)
+            console.log("Time list =>", lockTimeList)
             await expect(StakingContract.connect(user1).WithDraw(1, USDT))
                 .to.be.revertedWith("Lock time not elapsed");
         })
